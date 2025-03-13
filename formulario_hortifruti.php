@@ -157,10 +157,10 @@
 <body>
     <div class="buttons">
         <button><a href="verifica_sessao.php" style="color: white; text-decoration: none;">Verificar sessao</a></button>
-        <button><a href="sair.php" style="color: white; text-decoration: none;"> Sair</a></button>
+        <button><a href="sair.php" style="color: white; text-decoration: none;" title="Sair">  <span style="font-size: 30px;">↩</span> </a></button>
         <!--<button><a href="financeiro.php" style="color: white; text-decoration: none;">Financeiro</a></button>-->
-        <button><a href="vendas.php" style="color: white; text-decoration: none;">💲 Vendas</a></button>
-        <button onclick="setFocus()"><a href="estoque.php" style="color: white; text-decoration: none;">📦 Estoque</a></button>
+        <button><a href="vendas.php" style="color: white; text-decoration: none;" title="Vendas"> <span style="font-size: 30px;">💲</span> </a></button>
+        <button onclick="setFocus()"><a href="estoque.php" style="color: white; text-decoration: none;" title="Estoque"><span style="font-size: 30px;">📦</span> </a></button>
         <!--<button onclick="setFocus()"><a href="editarEstoque.php" style="color: white; text-decoration: none;">Atualizar estoque</a></button>-->
     </div>
 
@@ -201,7 +201,7 @@
             </div>
 
             <div class="form-group">
-                <button type="button" id="add-to-cart">🛒 Adicionar ao Carrinho</button>
+                <button type="button" id="add-to-cart"> <span style="font-size: 30px;" title="Carrinho">🛒</span> </button>
             </div>
         </form>
     </div>
@@ -247,8 +247,8 @@
         </div>
 
         <div class="form-group">
-            <button id="finalize-sale">✔️ Finalizar Venda</button>
-            <button id="print-cart">🖨️ Imprimir Carrinho</button>
+            <button id="finalize-sale"> <span style="font-size: 30px;" title="Finalizar">✔️</button>
+            <button id="print-cart"> <span style="font-size: 30px;" title="Imprimir">🖨️</button>
 
         </div>
     </div>
