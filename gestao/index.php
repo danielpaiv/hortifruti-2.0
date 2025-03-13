@@ -58,7 +58,7 @@
 </head>
 <body>
 
-<button><a href="https://hortfruti.pdvvendas.shop"class="btn btn-danger me-5">Volta</a></button>
+<button><a href="http://localhost/hortifruti/formulario_hortifruti.php"class="btn btn-danger me-5">Volta</a></button>
     <script>
         window.onload = function() {
         document.querySelector('input[name="nome"]').focus();

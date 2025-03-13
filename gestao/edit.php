@@ -157,10 +157,10 @@
                     <input type="number" id="quantidade" name="quantidade" value="<?php echo $produto['quantidade']; ?>"step="0.01" min="0" required>
                 </div>
 
-                <!--<div class="form-group">
+                <div class="form-group">
                     <label for="preco">Preço (R$):</label>
                     <input type="number" id="preco" name="preco" value="<?php echo $produto['preco']; ?>" step="0.01" min="0" required>
-                </div>-->
+                </div>
 
                 <div class="form-group">
                     <label for="preco_unitario">Preço Unitário (R$):</label>
@@ -174,7 +174,7 @@
 
                 <div class="form-group">
                 <label for="data_hora"><b>Data e Hora</b></label>
-                <input type="datetime-local" name="data_hora" id="data_hora" value="<?php echo date('datetime-local', strtotime($data)); ?>" required>
+                <input type="datetime-local" name="data_hora" id="data_hora" value="<?php echo date('Y-m-d\TH:i', strtotime($data)); ?>" required>
 
                 </div>
 

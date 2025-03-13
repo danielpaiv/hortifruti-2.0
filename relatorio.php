@@ -120,7 +120,7 @@
 </head>
 <body>
     <button>
-        <a href="formulario_hortifruti.php">↩️ Voltar</a>
+        <a href="http://localhost/hortifruti/formulario_hortifruti.php">Voltar</a>
     </button>
     <div class="container">
         <h2>Relatório de Vendas - Hortifruti</h2>
@@ -166,10 +166,10 @@
         <table>
             <thead>
                 <tr>
-                    <th>💵 Valor em Dinheiro</th>
-                    <th>💳 Valor em Cartão</th>
-                    <th>💠 Valor em Pix</th>
-                    <th>📈 Subtotal</th>
+                    <th>Valor em Dinheiro</th>
+                    <th>Valor em Cartão</th>
+                    <th>Valor em Pix</th>
+                    <th>Subtotal</th>
                 </tr>
             </thead>
             <tbody>
@@ -194,8 +194,9 @@
         <input type="number" name="troco" step="0.01">
         <br>
         <br>
+        
         <!-- Botão de Imprimir -->
-        <button onclick="window.print()">🖨️ Imprimir Relatório</button>
+        <button onclick="window.print()">🖨️Imprimir Relatório</button>
     </div>
     <script>
         // Função para capturar o pressionamento da tecla Esquerda

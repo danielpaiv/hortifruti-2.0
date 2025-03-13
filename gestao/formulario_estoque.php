@@ -138,12 +138,12 @@
     
         <nav id="menu">
             <a href="#" onclick="facharMenu()">&times; Fechar</a>
-            <a href="painel.php">Painel</a>
+            <a href="Painel.php">Painel</a>
             <a href="financeiro.php">financeiro</a>
             <a href="editarEstoque.php">Editar estoque</a>
             <a href="relatorio.php">Gerar relatorio</a>
             <a href="perdas.php">Registrar Perdas</a>
-            <a href="visualizar_perdas.php">Perdas</a>
+            <a href="visualizar_perdas.php">Perdas\Despesas</a>
             <a href="sair.php">Sair</a>
         </nav>
     <main id="conteudo">
@@ -209,7 +209,7 @@
          // Função para capturar o pressionamento da tecla Esquerda
         document.addEventListener('keydown', function(event) {
             if (event.key === 'ArrowLeft') {  // Se a tecla pressionada for 'ESC'
-                window.location.href = 'painel.php';  // Redireciona para o formulário
+                window.location.href = 'Painel.php';  // Redireciona para o formulário
             }
         });
 

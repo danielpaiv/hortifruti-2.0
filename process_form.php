@@ -1,9 +1,6 @@
 <?php
 include 'db_connection.php';
 
-// Define o fuso horário para o horário oficial de Brasília (UTC-3)
-date_default_timezone_set('America/Sao_Paulo');//foi adicionado um fuso horario com a string [data_venda] 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar se o ID do usuário foi enviado
     if (!isset($_POST['user-id']) || empty($_POST['user-id'])) {
@@ -28,11 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $quantidade = $produto['quantity'];
         $preco_unitario = $produto['unitPrice'];
         $valor_total = $produto['totalPrice'];
-         $data_venda = date('Y-m-d H:i:s');
 
         // Exemplo de inserção segura usando MySQLi
-        $stmt = $conn->prepare("INSERT INTO vendas (produto, quantidade, preco_unitario, valor_total, pagamento_dinheiro, pagamento_cartao, pagamento_pix, user_id, data_venda) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sddddddis", $produto_nome, $quantidade, $preco_unitario, $valor_total, $pagamento_dinheiro, $pagamento_cartao, $pagamento_pix, $user_id, $data_venda);
+        $stmt = $conn->prepare("INSERT INTO vendas (produto, quantidade, preco_unitario, valor_total, pagamento_dinheiro, pagamento_cartao, pagamento_pix, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sddddddi", $produto_nome, $quantidade, $preco_unitario, $valor_total, $pagamento_dinheiro, $pagamento_cartao, $pagamento_pix, $user_id);
         $stmt->execute();
         $stmt->close();
     }

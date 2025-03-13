@@ -11,8 +11,8 @@
     $data_atual = date('Y-m-d');
 
     // Inicializar variáveis de período
-    $data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : $data_atual;
-    $data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : $data_atual;
+    $data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : '';
+    $data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : '';
 
     // Condição para filtrar por data ou período
     $where_clause = "WHERE DATE(data_venda) = '$data_atual'";
@@ -182,7 +182,7 @@
 
         }
         div{
-            /*display: inline-block;*/
+            
             background-color: #060642 ;
             padding: 5px;
             text-align: center;
@@ -200,12 +200,12 @@
    
     <nav id="menu">
         <a href="#" onclick="facharMenu()">&times; Fechar</a>
-        <a href="painel.php">Painel</a>
+        <a href="Painel.php">Painel</a>
         <a href="editarEstoque.php">Editar estoque</a>
         <a href="formulario_estoque.php">Adicionar produtos</a>
         <a href="relatorio.php">Gerar relatorio</a>
         <a href="perdas.php">Registrar Perdas</a>
-        <a href="visualizar_perdas.php">Perdas</a>
+        <a href="visualizar_perdas.php">Perdas\Despesas</a>
         <a href="sair.php">Sair</a>
     </nav>
 
@@ -222,10 +222,10 @@
                     <input type="date" name="data_inicio" id="data_inicio" value="<?php echo $data_inicio; ?>">
                     <label for="data_fim">Data Fim:</label>
                     <input type="date" name="data_fim" id="data_fim" value="<?php echo $data_fim; ?>">
-                    <button type="submit">🔍 Filtrar</button>
+                    <button type="submit">Filtrar</button>
                 </form>
 
-                <!--<h3>Resumo Financeiro</h3>
+            <!--    <h3>Resumo Financeiro</h3>
                 <table>
                     <thead>
                         <tr>
@@ -241,8 +241,8 @@
                             <td>R$ <?php echo number_format($lucro_parcial, 2, ',', '.'); ?></td>
                         </tr>
                     </tbody>
-                </table>-->
-
+                </table>
+            -->
                 <h3>Formas de Pagamento</h3>
                 <table>
                     <thead>
@@ -255,10 +255,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>R$ <?php echo number_format($total_dinheiro, 2, ',', '.'); ?></td>
-                            <td>R$ <?php echo number_format($total_cartao, 2, ',', '.'); ?></td>
-                            <td>R$ <?php echo number_format($total_pix, 2, ',', '.'); ?></td>
-                            <td>R$ <?php echo number_format($total_dinheiro + $total_cartao + $total_pix, 2, ',', '.'); ?></td>
+                            <td>💵R$ <?php echo number_format($total_dinheiro, 2, ',', '.'); ?></td>
+                            <td>💳R$ <?php echo number_format($total_cartao, 2, ',', '.'); ?></td>
+                            <td>💠R$ <?php echo number_format($total_pix, 2, ',', '.'); ?></td>
+                            <td>📈R$ <?php echo number_format($total_dinheiro + $total_cartao + $total_pix, 2, ',', '.'); ?></td>
                         </tr>
                     </tbody>
                 </table>

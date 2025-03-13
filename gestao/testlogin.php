@@ -32,7 +32,7 @@ if (isset($_POST['submit']) && !empty($_POST['nome']) && !empty($_POST['senha'])
         // Login bem-sucedido
         $_SESSION['nome'] = $nome;
         $_SESSION['senha'] = $senha;
-        header('Location:painel.php');
+        header('Location:http://localhost/hortifruti/gestao/painel.php');
     }
 
     // Fechar a conexão

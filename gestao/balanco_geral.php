@@ -140,7 +140,6 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        
         .container {
             background-color: rgb(181, 179, 199);
             max-width: 800px;
@@ -174,25 +173,24 @@
     </nav>
 
     <main id="conteudo">
-        
         <div class="container">
             <div></div>
             <h2 style="text-align: center;">Balanço Geral</h2>
-    
+
             <!-- Formulário para selecionar datas -->
             <form method="GET">
                 <label for="data_inicio">Data Início:</label>
                 <input type="date" name="data_inicio" value="<?php echo $data_inicio; ?>" required>
-    
+
                 <label for="data_fim">Data Fim:</label>
                 <input type="date" name="data_fim" value="<?php echo $data_fim; ?>" required>
-    
+
                 <button type="submit">Filtrar</button>
             </form>
-    
+
             <table>
                 <tr>
-                    <th>Total de Vendas </th>
+                    <th>Total de Vendas (Filtrado)</th>
                     <th>Total de Produtos Vendidos</th>
                 </tr>
                 <tr>
@@ -200,7 +198,7 @@
                     <td><?php echo number_format($total_quantidades, 0, ',', '.'); ?></td>
                 </tr>
             </table>
-    
+
             <h2 style="text-align: center;">Faturamento</h2>
             <table>
                 <tr>
@@ -211,7 +209,7 @@
                 </tr>
             </table>
             
-            <h2 style="text-align: center;">Total de Perdas / Despesa </h2>
+            <h2 style="text-align: center;">Total de Perdas por Despesa (Filtrado)</h2>
             <table>
                 <tr>
                     <th>Despesa / Perdas</th>
@@ -236,7 +234,7 @@
                     </tr>
                 <?php endif; ?>
             </table>
-    
+
             <h2 style="text-align: center;">Lucro Líquido</h2>
             <table>
                 <tr>

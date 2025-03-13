@@ -1,13 +1,15 @@
 <?php
     session_start();
 
+   // Definir o fuso horário para Brasília
+   date_default_timezone_set('America/Sao_Paulo');
    
     // Verificar se a sessão contém os dados esperados
     if (isset($_SESSION['user_id']) && isset($_SESSION['nome'])) {
         echo 'ID : ' . $_SESSION['user_id'] . '<br>';
         echo 'Nome : ' . $_SESSION['nome'] . '<br>';
     } else {
-       echo 'Nenhum dado de usuário encontrado na sessão.';
+        echo 'Nenhum dado de usuário encontrado na sessão.';
     }
 
 
@@ -22,8 +24,7 @@
     // Abrir conexão com o banco de dados
     $conn = OpenCon();
 
-    // Definir o fuso horário para Brasília
-    date_default_timezone_set('America/Sao_Paulo');
+    
 
     // Obter a data atual
     $data_atual = date('Y-m-d');
@@ -35,11 +36,11 @@
     $stmt->execute();
     $result_vendas = $stmt->get_result();
 
-    // Buscar a data e hora da última venda (caso exista) foi substituido [$ultima_data_venda] por [$data_venda]
-    $data_venda = null;
+    // Buscar a data e hora da última venda (caso exista)
+    $ultima_data_venda = null;
     if ($result_vendas->num_rows > 0) {
         $row = $result_vendas->fetch_assoc();
-        $data_venda = $row['data_venda'];
+        $ultima_data_venda = $row['data_venda'];
         // Reposicionar o ponteiro para o início do resultado
         $result_vendas->data_seek(0);
     }
@@ -128,7 +129,7 @@
             <form method="GET" action="">
                 <label for="filter-date">Selecione uma data:</label>
                 <input type="date" id="filter-date" name="filter-date" value="<?php echo htmlspecialchars($data_filtro); ?>" required>
-                <button type="submit">🔍 Filtrar</button>
+                <button type="submit"> 🔍 Filtrar</button>
             </form>
             <br>
             <!-- Botões de Ação -->
@@ -188,7 +189,7 @@
             
         // Função para filtrar os itens da última venda
         function filterLastSale() {
-            const lastSaleDate = '<?php echo $data_venda; ?>';
+            const lastSaleDate = '<?php echo $ultima_data_venda; ?>';
             const rows = document.querySelectorAll("#sales-table-body tr");
             rows.forEach((row) => {
                 if (row.getAttribute("data-venda") === lastSaleDate) {
@@ -206,7 +207,6 @@
                 alert("Nenhum item selecionado para impressão.");
                 return;
             }
-            
 
             // Inicializa o subtotal
             let subtotal = 0;
@@ -229,9 +229,6 @@
                 subtotal += parseFloat(totalCell.textContent);
 
                 printWindow.document.write(row.outerHTML);
-                
-            
-           
             });
 
             
@@ -250,12 +247,7 @@
             printWindow.document.write("</table></body></html>");
             printWindow.document.close();
             printWindow.print();
-            
-            
-            
         }
-        
-        
     </script>
 </body>
 </html>

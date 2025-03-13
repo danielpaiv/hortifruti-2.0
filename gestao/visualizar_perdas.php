@@ -6,7 +6,7 @@
 
     // Abrir conexão com o banco de dados
     $conn = OpenCon();
-
+    
     // Verificar se um filtro de data foi enviado
     $filtro_data = "";
     if (!empty($_POST['data_inicio']) && !empty($_POST['data_fim'])) {
@@ -20,7 +20,7 @@
         SELECT 
             id, 
             DATE_FORMAT(data_perda, '%d/%m/%Y') AS data_perda_formatada, 
-            produto, 
+            produto,
             despesa,
             funcionario, 
             quantidade, 
@@ -148,7 +148,7 @@
     
     <nav id="menu">
         <a href="#" onclick="facharMenu()">&times; Fechar</a>
-        <a href="painel.php">Painel</a>
+        <a href="Painel.php">Painel</a>
         <a href="perdas.php">Registrar Perdas</a>
         <a href="financeiro.php">financeiro</a>
         <a href="editarEstoque.php">Editar estoque</a>
@@ -197,7 +197,7 @@
                         echo "<td>" . $row['id'] . "</td>";
                         echo "<td>" . $row['data_perda_formatada'] . "</td>";
                         echo "<td>" . htmlspecialchars($row['produto']) . "</td>";
-                         echo "<td>" . htmlspecialchars($row['despesa']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['despesa']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['funcionario']) . "</td>";
                         echo "<td>" . number_format($row['quantidade'], 2, ',', '.') . "</td>";
                         echo "<td>R$ " . number_format($row['valor'], 2, ',', '.') . "</td>";

@@ -159,7 +159,7 @@
    
     <nav id="menu">
         <a href="#" onclick="facharMenu()">&times; Fechar</a>
-        <a href="painel.php">Painel</a>
+        <a href="Painel.php">Painel</a>
         <a href="visualizar_perdas.php">Perdas\Despesas</a>
         <a href="despesas.php">Registrar Despesas</a>
         <a href="financeiro.php">financeiro</a>

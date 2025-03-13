@@ -3,8 +3,8 @@
 
     // Verificar se a sessão contém os dados esperados
     if (isset($_SESSION['user_id']) && isset($_SESSION['nome'])) {
-        echo 'ID : ' . $_SESSION['user_id'] . '<br>';
-        echo 'Nome : ' . $_SESSION['nome'] . '<br>';
+        echo 'ID  : ' . $_SESSION['user_id'] . '<br>';
+        echo 'Nome  : ' . $_SESSION['nome'] . '<br>';
     } else {
         echo 'Nenhum dado de usuário encontrado na sessão.';
     }
@@ -146,14 +146,18 @@
             color: white;
             
         }
+        
+        
 
         
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 <body>
     <div class="buttons">
-        <!--<button><a href="formulario_estoque.php" style="color: white; text-decoration: none;">Cadastrar Produto</a></button>-->
-        <button><a href="sair.php" style="color: white; text-decoration: none;"> ↩️Sair</a></button>
+        <button><a href="verifica_sessao.php" style="color: white; text-decoration: none;">Verificar sessao</a></button>
+        <button><a href="sair.php" style="color: white; text-decoration: none;"> Sair</a></button>
         <!--<button><a href="financeiro.php" style="color: white; text-decoration: none;">Financeiro</a></button>-->
         <button><a href="vendas.php" style="color: white; text-decoration: none;">💲 Vendas</a></button>
         <button onclick="setFocus()"><a href="estoque.php" style="color: white; text-decoration: none;">📦 Estoque</a></button>
@@ -245,6 +249,7 @@
         <div class="form-group">
             <button id="finalize-sale">✔️ Finalizar Venda</button>
             <button id="print-cart">🖨️ Imprimir Carrinho</button>
+
         </div>
     </div>
 

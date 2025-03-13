@@ -81,7 +81,8 @@
         $filtro_zeradas";
 
     $result_estoque = $conn->query($sql_estoque);
-    
+
+
     // Verificar se o filtro "desconsiderar estoque zerado" está ativo
     $desconsiderar_estoque_zerado = isset($_POST['filtro_zerado']) && $_POST['filtro_zerado'] == '1';
 
@@ -130,7 +131,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel</title>
+    <title>Menu lateral</title>
      <style>
         body{
             font-family: Arial, Helvetica, sans-serif;
@@ -252,7 +253,7 @@
         <a href="relatorio.php">Gerar relatorio</a>
         <a href="perdas.php">Registrar Perdas</a>
         <a href="despesas.php">Registrar Despesas</a>
-        <a href="visualizar_perdas.php">Perdas / Despesas</a>
+        <a href="visualizar_perdas.php">Perdas\Despesas</a>
         <a href="sair.php">Sair</a>
     </nav>
 
@@ -302,62 +303,89 @@
                         </table>
                     </div> 
 
-                    <div class="table-wrapper">   
+                    <div class="table-wrapper">
+    <h3>Estoque Atual</h3>
 
-                        <h3>Estoque Atual</h3>
+    <label for="filtroNome">Filtrar por nome:</label>
+    <input type="text" id="filtroNome" onkeyup="filtrarPorNome()"><br><br>
 
-                        <label for="filtroNome">Filtrar por nome:</label>
-                        <input type="text" id="filtroNome" onkeyup="filtrarPorNome()"><br><br>
+    <!-- Formulário para filtrar vendas zeradas 
+    <form method="POST" class="filter-form">
+        <input type="hidden" name="filtro_zeradas" value="<?= $desconsiderar_vendas_zeradas ? '0' : '1' ?>">
+        <button type="submit">
+            <?= $desconsiderar_vendas_zeradas ? 'Mostrar Todas as Vendas' : 'Desconsiderar Vendas Zeradas' ?>
+        </button>
+    </form>-->
 
-                        <!-- Formulário para filtrar vendas zeradas 
-                        <form method="POST" class="filter-form">
-                            <input type="hidden" name="filtro_zeradas" value="<?= $desconsiderar_vendas_zeradas ? '0' : '1' ?>">
-                            <button type="submit">
-                                <?= $desconsiderar_vendas_zeradas ? 'Mostrar Todas as Vendas' : 'Desconsiderar Vendas Zeradas' ?>
-                            </button>
-                        </form>-->
-                        
-                         <!-- Formulário para alternar o filtro -->
-                         <form method="POST">
-                            <input type="hidden" name="filtro_zerado" value="<?= $desconsiderar_estoque_zerado ? '0' : '1' ?>">
-                            <button type="submit">
-                                <?= $desconsiderar_estoque_zerado ? 'Mostrar Todos os Produtos' : 'Desconsiderar Estoque Zerado' ?>
-                            </button>
-                        </form>
-                    
-                        <button onclick="imprimirTabela()">Imprimir Tabela</button>
+     <!-- Formulário para alternar o filtro -->
+     <form method="POST">
+        <input type="hidden" name="filtro_zerado" value="<?= $desconsiderar_estoque_zerado ? '0' : '1' ?>">
+        <button type="submit">
+            <?= $desconsiderar_estoque_zerado ? 'Mostrar Todos os Produtos' : 'Desconsiderar Estoque Zerado' ?>
+        </button>
+    </form>
 
-                        <table id="estoqueAtual">
-                            <thead>
-                                <tr>
-                                    <th>Produto</th>
-                                    <th>Quantidade em Estoque (kg)</th>
-                                    <th>Quantidade Vendida (kg)</th>
-                                    <th>Quantidade Restante (kg)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if ($result_estoque->num_rows > 0) {
-                                    while ($row = $result_estoque->fetch_assoc()) {
-                                    // Filtrar produtos com estoque zerado, se necessário
-                                    if ($desconsiderar_estoque_zerado && $row['quantidade_restante'] <= 0) {
-                                        continue;
-                                    }
-                                        echo "<tr>";
-                                        echo "<td>" . $row['produto'] . "</td>";
-                                        echo "<td>" . number_format($row['quantidade_estoque'], 2, ',', '.') . "</td>";
-                                        echo "<td>" . number_format($row['quantidade_vendida'], 2, ',', '.') . "</td>";
-                                        echo "<td>" . number_format($row['quantidade_restante'], 2, ',', '.') . "</td>";
-                                        echo "</tr>";
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='4'>Nenhum produto no estoque.</td></tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
+    <button onclick="imprimirTabela()">Imprimir Tabela</button>
+
+    <table id="estoqueAtual">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade em Estoque (kg)</th>
+                <th>Quantidade Vendida (kg)</th>
+                <th>Quantidade Restante (kg)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($result_estoque->num_rows > 0) {
+                while ($row = $result_estoque->fetch_assoc()) {
+                    // Filtrar produtos com estoque zerado, se necessário
+                    if ($desconsiderar_estoque_zerado && $row['quantidade_restante'] <= 0) {
+                        continue;
+                    }
+                    echo "<tr>";
+                    echo "<td>" . $row['produto'] . "</td>";
+                    echo "<td>" . number_format($row['quantidade_estoque'], 2, ',', '.') . "</td>";
+                    echo "<td>" . number_format($row['quantidade_vendida'], 2, ',', '.') . "</td>";
+                    echo "<td>" . number_format($row['quantidade_restante'], 2, ',', '.') . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4'>Nenhum produto no estoque.</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function filtrarPorNome() {
+        const filtro = document.getElementById('filtroNome').value.toUpperCase();
+        const tabela = document.getElementById('estoqueAtual');
+        const linhas = tabela.getElementsByTagName('tr');
+
+        for (let i = 1; i < linhas.length; i++) {
+            const celula = linhas[i].getElementsByTagName('td')[0];
+            if (celula) {
+                const textoCelula = celula.textContent || celula.innerText;
+                linhas[i].style.display = textoCelula.toUpperCase().includes(filtro) ? '' : 'none';
+            }
+        }
+    }
+
+    function imprimirTabela() {
+        const tabela = document.getElementById('estoqueAtual').outerHTML;
+        const janelaImpressao = window.open('', '_blank');
+        janelaImpressao.document.write('<html><head><title>Impressão de Tabela</title></head><body>');
+        janelaImpressao.document.write('<h3>Estoque Atual</h3>');
+        janelaImpressao.document.write(tabela);
+        janelaImpressao.document.write('</body></html>');
+        janelaImpressao.document.close();
+        janelaImpressao.print();
+    }
+</script>
+
         
                 </div>
 
@@ -366,16 +394,6 @@
     </main>
     
     <script>
-        function imprimirTabela() {
-            const tabela = document.getElementById('estoqueAtual').outerHTML;
-            const janelaImpressao = window.open('', '_blank');
-            janelaImpressao.document.write('<html><head><title>Impressão de Tabela</title></head><body>');
-            janelaImpressao.document.write('<h3>Estoque Atual</h3>');
-            janelaImpressao.document.write(tabela);
-            janelaImpressao.document.write('</body></html>');
-            janelaImpressao.document.close();
-            janelaImpressao.print();
-        }
 
         function filtrarPorNome() {
             const input = document.getElementById('filtroNome');
@@ -397,7 +415,7 @@
         }
         function abrirMenu() {
             document.getElementById('menu').style. height = '100%';
-            document.getElementById('conteudo').style.marginLeft = '18%';
+            document.getElementById('conteudo').style.marginLeft = '20%';
         }
         function facharMenu(){
             document.getElementById('menu').style. height = '0%'

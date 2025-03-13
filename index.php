@@ -58,7 +58,8 @@
 </head>
 <body>
 
-<button><a href="/gestao/index.php"class="btn btn-danger me-5">Gestão</a></button>
+<button><a href="http://localhost/hortifruti/formulario_hortifruti.php"class="btn btn-danger me-5">Volta</a></button>
+<button><a href="http://localhost/hortifruti/gestao/index.php"class="btn btn-danger me-5">Gestão</a></button>
     <script>
         window.onload = function() {
         document.querySelector('input[name="nome"]').focus();

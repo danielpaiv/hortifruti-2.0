@@ -45,7 +45,7 @@ if (isset($_POST['submit']) && !empty($_POST['nome']) && !empty($_POST['senha'])
         echo 'Nome do usuário armazenado na sessão: ' . $_SESSION['nome'] . '<br>';
 
         // Redirecionar para outra página
-        header('Location: formulario_hortifruti.php');
+        header('Location: http://localhost/hortifruti/formulario_hortifruti.php');
     }
 
     // Fechar a conexão com o banco

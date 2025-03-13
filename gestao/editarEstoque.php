@@ -266,7 +266,7 @@
                                 <th>ID</th>
                                 <th>Produto</th>
                                 <th>Quantidade</th>
-                                <!--<th>Preço</th>-->
+                                <th>Preço</th>
                                 <th>Preço unitário</th>
                                 <th>Data</th>
                                 <th>Ações</th>
@@ -280,7 +280,7 @@
                                         echo "<td>" . $row["id"] . "</td>";
                                         echo "<td>" . $row["produto"] . "</td>";
                                         echo "<td>" . $row["quantidade"] . "</td>";
-                                        //echo "<td>R$ " . number_format($row["preco"], 2, ',', '.') . "</td>";
+                                        echo "<td>R$ " . number_format($row["preco"], 2, ',', '.') . "</td>";
                                         echo "<td>R$ " . number_format($row["preco_unitario"], 2, ',', '.') . "</td>";
                                         echo "<td>" . $row["data_hora"] . "</td>";
 

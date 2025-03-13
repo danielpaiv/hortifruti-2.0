@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Conexão com o banco de dados
-    $conn = new mysqli("localhost", "u151972251_hortfruti_vend", "Danipaiva1991@", "u151972251_hortfruti");
+    $conn = new mysqli("localhost", "root", "", "hortfruti");
 
     // Verifica a conexão
     if ($conn->connect_error) {

@@ -1,10 +1,10 @@
 <?php
     function OpenCon()
         {
-           $dbhost = "localhost"; // ou o endereço do seu servidor MySQL
-            $dbuser = "u151972251_hortfruti_vend";
-            $dbpass = "Danipaiva1991@";
-            $dbname = "u151972251_hortfruti";
+            $dbhost = "localhost"; // ou o endereço do seu servidor MySQL
+            $dbuser = "root";
+            $dbpass = "";
+            $dbname = "hortfruti";
 
             // Criar conexão
             $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);

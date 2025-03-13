@@ -159,7 +159,7 @@
    
     <nav id="menu">
         <a href="#" onclick="facharMenu()">&times; Fechar</a>
-        <a href="painel.php">Painel</a>
+        <a href="Painel.php">Painel</a>
         <a href="visualizar_perdas.php">Perdas\Despesas</a>
         <a href="perdas.php">Registrar Perdas</a>
         <a href="financeiro.php">financeiro</a>
@@ -222,7 +222,7 @@
          <div class="form-group">
             <label for="funcionario">Funcionário:</label>
             <select id="funcionario" name="funcionario" required>
-                <option value="">Selecione o Origem </option>
+                <option value="">Selecione o Funcionário</option>
                 <?php
                     if ($result_usuarios->num_rows > 0) {
                         while($row = $result_usuarios->fetch_assoc()) {

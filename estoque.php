@@ -92,7 +92,7 @@
 </head>
 <body>
     <button>
-        <a href="formulario_hortifruti.php">↩️ Voltar</a>
+        <a href="http://localhost/hortifruti/formulario_hortifruti.php">Voltar</a>
     </button>
     <div class="container">
         <h2>Estoque - Hortifruti</h2>
