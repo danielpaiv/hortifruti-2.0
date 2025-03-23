@@ -91,9 +91,7 @@
     </style>
 </head>
 <body>
-    <button>
-        <a href="http://localhost/hortifruti/formulario_hortifruti.php">Voltar</a>
-    </button>
+    <button><a href="http://localhost/hortifruti/formulario_hortifruti.php" title="Voltar">  <span style="font-size: 30px;">↩</span></a></button>
     <div class="container">
         <h2>Estoque - Hortifruti</h2>
 

@@ -120,7 +120,7 @@
     </style>
 </head>
 <body>
-<button><a href="formulario_hortifruti.php" style="color: white; text-decoration: none;">↩️ Voltar</a></button>
+<button><a href="formulario_hortifruti.php" style="color: white; text-decoration: none;"title="Voltar">  <span style="font-size: 30px;">↩</span></a></button>
 
     <div class="container">
         <h2>Itens Vendidos - Hortifruti</h2>
@@ -129,15 +129,15 @@
             <form method="GET" action="">
                 <label for="filter-date">Selecione uma data:</label>
                 <input type="date" id="filter-date" name="filter-date" value="<?php echo htmlspecialchars($data_filtro); ?>" required>
-                <button type="submit"> 🔍 Filtrar</button>
+                <button type="submit" title="Filtrar">  <span style="font-size: 30px;">🔍</span></button>
             </form>
             <br>
             <!-- Botões de Ação -->
             <div>
-                <button onclick="filterLastSale()">🔍 Filtrar Última Venda</button>
-                <button onclick="printSelected()">🖨️ Imprimir Selecionados</button>
+                <button onclick="filterLastSale()" title="Filtrar Última Venda">  <span style="font-size: 30px;">🔍</span> </button>
+                <button onclick="printSelected()" title="Imprimir Selecionados">  <span style="font-size: 30px;">🖨️</span> </button>
                 <!-- Botão para gerar o relatório -->
-                <button><a href="relatorio.php" class="btn-relatorio">📊 Gerar Relatório</a></button>
+                <button><a href="relatorio.php" class="btn-relatorio" title="Gerar Relatório">  <span style="font-size: 30px;">📊</span></a></button>
             </div>
             <br>
 

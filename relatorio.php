@@ -120,7 +120,7 @@
 </head>
 <body>
     <button>
-        <a href="http://localhost/hortifruti/formulario_hortifruti.php">Voltar</a>
+        <a href="http://localhost/hortifruti/formulario_hortifruti.php" title="Voltar"><span style="font-size: 30px;">↩</span></a>
     </button>
     <div class="container">
         <h2>Relatório de Vendas - Hortifruti</h2>
@@ -196,7 +196,7 @@
         <br>
         
         <!-- Botão de Imprimir -->
-        <button onclick="window.print()">🖨️Imprimir Relatório</button>
+        <button onclick="window.print()" title="Imprimir ">  <span style="font-size: 30px;">🖨️</span></button>
     </div>
     <script>
         // Função para capturar o pressionamento da tecla Esquerda

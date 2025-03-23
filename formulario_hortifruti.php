@@ -50,7 +50,7 @@
             font-size:120%;
             position: fixed;
             top: 20%;
-            background-color:rgb(181, 179, 199);
+            background-color:rgb(125, 116, 204);
             max-width: 400px;
             margin: auto;
             padding: 20px;
@@ -61,6 +61,7 @@
             justify-content: space-between; /* Espaço entre os objetos */
             align-items: center; /* Alinha os objetos verticalmente no centro */
             gap: 50px; /* Espaçamento entre os objetos */
+            margin-left: 0%;
 
            
         }
@@ -75,6 +76,7 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            color: white;
         }
         .form-group input, .form-group select {
             width: 100%;
@@ -84,7 +86,7 @@
         .buttons {
             margin-bottom: 20px;
             position: fixed;
-            margin-left: 30%;
+            margin-left: 20%;
         }
         button {
             background-color: #28a745;
@@ -103,9 +105,15 @@
             padding: 15px;
             border-radius: 5px;
             height: 4000px; /* Ajusta a altura conforme o conteúdo */
+            margin-left: 35%;
+            margin-right: 100%;
 
            /* width: 100%;
             margin-left:20%;*/
+        }
+        .form-gro{
+            position: fixed;
+            margin-left: 77%;
         }
         #product-id{
             font-size:120%;
@@ -167,6 +175,7 @@
     </div>
 
     <div class="container">
+        
         <h2>Formulário de Vendas - Hortifruti</h2>
         <form id="sales-form">
             <!-- Campo de ID do Produto -->
@@ -219,10 +228,16 @@
                     <th>Valor Total (R$)</th>
                     <th>Ações</th>
                 </tr>
+                
             </thead>
             <tbody></tbody>
+            <tr>
+                <th>/</th>
+            </tr>
         </table>
-
+    </div>
+    
+    <div class=form-gro>
         <!-- Forma de pagamento -->
         <div class="form-group">
             <label>
@@ -253,6 +268,7 @@
             <button id="print-cart"> <span style="font-size: 30px;" title="Imprimir">🖨️</button>
 
         </div>
+    
     </div>
 
     <script>
@@ -669,6 +685,8 @@
                         table {
                             width: 30%;
                             border-collapse: collapse;
+                             font-family: Arial, sans-serif;
+                            
                         }
                         th, td {
                             border: 1px solid #ddd;
