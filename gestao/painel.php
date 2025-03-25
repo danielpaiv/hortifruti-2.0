@@ -331,7 +331,7 @@
         <thead>
             <tr>
                 <th>Produto</th>
-                <th>Quantidade em Estoque (kg)</th>
+                <!--<th>Quantidade em Estoque (kg)</th>-->
                 <th>Quantidade Vendida (kg)</th>
                 <th>Quantidade Restante (kg)</th>
             </tr>
@@ -346,7 +346,7 @@
                     }
                     echo "<tr>";
                     echo "<td>" . $row['produto'] . "</td>";
-                    echo "<td>" . number_format($row['quantidade_estoque'], 2, ',', '.') . "</td>";
+                    //echo "<td>" . number_format($row['quantidade_estoque'], 2, ',', '.') . "</td>";
                     echo "<td>" . number_format($row['quantidade_vendida'], 2, ',', '.') . "</td>";
                     echo "<td>" . number_format($row['quantidade_restante'], 2, ',', '.') . "</td>";
                     echo "</tr>";
