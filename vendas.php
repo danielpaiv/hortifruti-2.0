@@ -45,15 +45,35 @@
         $result_vendas->data_seek(0);
     }
 
-    // Obter a data atual ou a data fornecida pelo usuário
+    // Obter a data e hora fornecidas pelo usuário
     $data_filtro = isset($_GET['filter-date']) ? $_GET['filter-date'] : $data_atual;
+    $hora_filtro = isset($_GET['filter-time']) ? $_GET['filter-time'] : '';
 
-    // Consultar as vendas realizadas na data selecionada para o usuário logado
-    $sql_vendas = "SELECT * FROM vendas WHERE DATE(data_venda) = ? AND user_id = ? ORDER BY data_venda DESC";
+    // Construir a query com base no filtro de data e hora
+    $sql_vendas = "SELECT * FROM vendas WHERE DATE(data_venda) = ? AND user_id = ?";
+    $param_types = 'si'; // 's' para string (data), 'i' para inteiro (user_id)
+    $params = [$data_filtro, $_SESSION['user_id']];
+
+    if (!empty($hora_filtro)) {
+        $hora_inicio = $hora_filtro . ':00';
+        $hora_fim = $hora_filtro . ':59';
+        
+        $sql_vendas .= " AND TIME(data_venda) BETWEEN ? AND ?";
+        $param_types .= 'ss'; // 's' para string (hora)
+        array_push($params, $hora_inicio, $hora_fim);
+    }
+
+    $sql_vendas .= " ORDER BY data_venda DESC";
+
     $stmt = $conn->prepare($sql_vendas);
-    $stmt->bind_param('ss', $data_filtro, $_SESSION['user_id']);  // Usar o ID do usuário logado para filtrar as vendas
+
+    // Fazer o bind_param corretamente
+    $stmt->bind_param($param_types, ...$params);
+
     $stmt->execute();
     $result_vendas = $stmt->get_result();
+
+
 
      //esse codigo é responsável por criptografar a pagina viinculado ao codigo teste login.
      // Verificar se as variáveis de sessão 'email' e 'senha' não estão definidas
@@ -125,12 +145,17 @@
     <div class="container">
         <h2>Itens Vendidos - Hortifruti</h2>
 
-            <!-- Formulário para selecionar a data -->
-            <form method="GET" action="">
-                <label for="filter-date">Selecione uma data:</label>
-                <input type="date" id="filter-date" name="filter-date" value="<?php echo htmlspecialchars($data_filtro); ?>" required>
-                <button type="submit" title="Filtrar">  <span style="font-size: 30px;">🔍</span></button>
-            </form>
+           <!-- Formulário para selecionar a data e hora -->
+<form method="GET" action="">
+    <label for="filter-date">Selecione uma data:</label>
+    <input type="date" id="filter-date" name="filter-date" value="<?php echo htmlspecialchars($data_filtro); ?>" required>
+    
+    <label for="filter-time">Selecione um horário:</label>
+    <input type="time" id="filter-time" name="filter-time" value="<?php echo htmlspecialchars($hora_filtro); ?>">
+    
+    <button type="submit" title="Filtrar"> <span style="font-size: 30px;">🔍</span></button>
+</form>
+
             <br>
             <!-- Botões de Ação -->
             <div>
