@@ -118,6 +118,48 @@
         exit();  // Importante adicionar o exit() após o redirecionamento
     }
 
+
+
+
+    // Definir período padrão (últimos 7 dias)
+$data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : date('Y-m-d', strtotime('-7 days'));
+$data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : date('Y-m-d');
+
+// Filtrar registros dentro do período selecionado
+$filtro_data_vendas = " WHERE DATE(data_venda) BETWEEN '$data_inicio' AND '$data_fim' ";
+$filtro_data_estoque = " WHERE DATE(data_hora) BETWEEN '$data_inicio' AND '$data_fim' ";
+
+// Consulta para calcular o total de itens vendidos no período
+$sql_total_itens = "
+    SELECT produto, SUM(quantidade) AS total_quantidade, SUM(valor_total) AS total_valor 
+    FROM vendas 
+    " . $filtro_data_vendas . "
+    GROUP BY produto";
+
+$result_total_itens = $conn->query($sql_total_itens);
+
+// Consulta para obter o estoque e calcular a quantidade vendida e restante no período
+$sql_estoque = "
+    SELECT 
+        e.produto,
+        e.quantidade AS quantidade_estoque,
+        IFNULL(SUM(v.quantidade), 0) AS quantidade_vendida,
+        (e.quantidade - IFNULL(SUM(v.quantidade), 0)) AS quantidade_restante
+    FROM 
+        estoque e
+    LEFT JOIN 
+        (SELECT * FROM vendas " . $filtro_data_vendas . ") v ON e.produto = v.produto
+    WHERE DATE(e.data_hora) BETWEEN '$data_inicio' AND '$data_fim'
+    GROUP BY 
+        e.produto";
+
+$result_estoque = $conn->query($sql_estoque);
+
+// Verifica se houve erro na consulta SQL
+if (!$result_estoque) {
+    die("Erro na consulta SQL: " . $conn->error);
+}
+
     // Fechar a conexão após as consultas
     CloseCon($conn);
 ?>
@@ -326,6 +368,17 @@
     </form>
 
     <button onclick="imprimirTabela()">Imprimir Tabela</button>
+
+    <!-- Formulário para seleção de período -->
+<form method="GET">
+    <label for="data_inicio">Data Início:</label>
+    <input type="date" name="data_inicio" value="<?= $data_inicio ?>" required>
+
+    <label for="data_fim">Data Fim:</label>
+    <input type="date" name="data_fim" value="<?= $data_fim ?>" required>
+
+    <button type="submit">Filtrar</button>
+</form>
 
     <table id="estoqueAtual">
         <thead>

@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Prepara a query para evitar SQL Injection
     $stmt = $conn->prepare("INSERT INTO perdas (data_perda, despesa, funcionario, valor, motivo) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssdds", $data_perda, $despesa, $funcionario, $valor, $motivo);
+    $stmt->bind_param("sssds", $data_perda, $despesa, $funcionario, $valor, $motivo);
 
     // Executa a query e verifica sucesso
     if ($stmt->execute()) {
