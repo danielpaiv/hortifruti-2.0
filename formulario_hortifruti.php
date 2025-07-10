@@ -44,6 +44,13 @@
             background-color:rgb(0, 37, 160);
            display: flex;
             justify-content: space-between;
+
+             background-image: url('image/logo.jpg'); /* caminho da imagem */
+            background-size: 1600px 900px;        /* cobre toda a tela */
+            background-repeat: no-repeat;  /* evita repetição */
+            background-position: center;   /* centraliza */
+            margin: 0;
+            height: 100vh;
             
         }
         .container {
